@@ -1,0 +1,12 @@
+{
+    "Id": "ChefBehaviourFix",
+    "DisplayName": "Chef Behaviour Fix",
+    "Author": "bzy-xyz",
+    "Version": "0.0.1",
+    "ManagerVersion": "0.22.12",
+    "GameVersion": "102",
+    "Requirements": [],
+    "LoadAfter": [],
+    "AssemblyName": "ChefBehaviourFix.dll",
+    "EntryMethod": "ChefBehaviourFix.Main.Load"
+  }

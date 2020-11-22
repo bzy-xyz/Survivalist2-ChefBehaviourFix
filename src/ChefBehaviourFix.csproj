@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net40</TargetFramework>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>../../../Survivalist Invisible Strain_Data/Managed/Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp-firstpass">
+      <HintPath>../../../Survivalist Invisible Strain_Data/Managed/Assembly-CSharp-firstpass.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>../../../Survivalist Invisible Strain_Data/Managed/UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>../../../Survivalist Invisible Strain_Data/Managed/UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>../../../Survivalist Invisible Strain_Data/Managed/UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>../../../Survivalist Invisible Strain_Data/Managed/UnityEngine.IMGUIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityModManager">
+      <HintPath>../../../Survivalist Invisible Strain_Data/Managed/UnityModManager/UnityModManager.dll</HintPath>
+    </Reference>
+    <Reference Include="0Harmony">
+      <HintPath>../../../Survivalist Invisible Strain_Data/Managed/UnityModManager/0Harmony.dll</HintPath>
+    </Reference>
+    <Reference Include="mscorlib">
+      <HintPath>../../../Survivalist Invisible Strain_Data/Managed/mscorlib.dll</HintPath>
+    </Reference>
+    <Reference Include="netstandard">
+      <HintPath>../../../Survivalist Invisible Strain_Data/Managed/netstandard.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
