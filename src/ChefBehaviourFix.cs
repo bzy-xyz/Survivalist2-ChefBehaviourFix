@@ -111,7 +111,7 @@ namespace ChefBehaviourFix
             
             var StopRecipe_MethodInfo = typeof(CraftGoal).GetMethod("StopRecipe");
 
-            for (int i = 0; i < codes.Count; i++) {
+            for (int i = 2; i < codes.Count; i++) {
                 CodeInstruction ci = codes[i];
                 if (ci.Calls(StopRecipe_MethodInfo)) {
                     codes.RemoveRange(i - 2, 3);
@@ -122,4 +122,41 @@ namespace ChefBehaviourFix
             return codes;
         }
     }
+
+    [HarmonyPatch(typeof(CraftGoal), "OnActivate")]
+    static class CraftGoal__OnActivate__Patch {
+        static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions) {
+            var codes = new List<CodeInstruction>(instructions);
+
+            var GetTotalNutrition_MethodInfo = typeof(EquipmentContainer).GetMethod("GetTotalNutrition");
+
+            for (int i = 4; i < codes.Count - 16; i++) {
+                CodeInstruction ci = codes[i];
+                if (ci.Calls(GetTotalNutrition_MethodInfo)) {
+                    codes.RemoveRange(i - 4, 21);
+                    break;
+                }
+            }
+
+            return codes;
+        }
+    }
+
+    // [HarmonyPatch(typeof(CraftGoal), "OnActivate")]
+    // static class CraftGoal__OnActivate__Patch2 {
+    //     static void Postfix(ref CraftGoal __instance, Character character) {
+    //         System.Text.StringBuilder goal_sb = new System.Text.StringBuilder();
+    //         __instance.BuildDebugString(goal_sb);
+    //         Main.mod.Logger.Log($"OnActivate_Postfix {character.FirstName} {character.Surname} {goal_sb.ToString()}");
+    //         if (character.Role == Role.Cook) {
+    //             Main.mod.Logger.Log("is cook");
+    //         }
+    //         if (__instance.FollowingRecipe == null) {
+    //             Main.mod.Logger.Warning("no recipe!");
+    //         }
+    //         else {
+    //             Main.mod.Logger.Log($"recipe {__instance.FollowingRecipe.UniqueID}");
+    //         }
+    //     }
+    // }
 }
