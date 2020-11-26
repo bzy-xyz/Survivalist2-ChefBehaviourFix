@@ -51,26 +51,27 @@ namespace ChefBehaviourFix
             } else {
                 // result_goal_sb.Append("null");
             }
-            // Main.mod.Logger.Warning($"a {character.FirstName} {character.Surname} {goal_sb.ToString()} => {result_goal_sb.ToString()}");
+            // Main.mod.Logger.Log($"{character.FirstName} {character.Surname} {goal_sb.ToString()} => {result_goal_sb.ToString()}");
             if (__instance.FollowingRecipe == null) {
                 // Main.mod.Logger.Warning("no recipe!");
             }
             else {
-                // Main.mod.Logger.Warning($"recipe {__instance.FollowingRecipe.UniqueID}");
+                // Main.mod.Logger.Log($"recipe {__instance.FollowingRecipe.UniqueID}");
 
+                // try to create an order to clear a reserved campfire with food
                 if (__result == null && !CraftGoal__ReversePatch.HasUsedIngredientsWaitingForProduct(__instance, character) && __instance.FollowingRecipe.RequiredPropToWorkOn() != 0)
                 {
                     GameTerrain terrain = GameTerrain.Instance;
                     CraftingProp craftingProp = terrain.GetFixedObjectOnTile(__instance.DestTile.x, __instance.DestTile.y) as CraftingProp;
                     if (craftingProp != null && (craftingProp.CraftingFinished || craftingProp.CraftingRecipe == null)) {
                         if (craftingProp.Inventory.GetTotalNutrition() > 0f) {
-                            // Main.mod.Logger.Warning("target prop has stuck food");
+                            // Main.mod.Logger.Log("target prop has stuck food");
                             if (__instance.DesiredAmount == int.MaxValue && character.GetRole() == Role.Cook) {
-                                // Main.mod.Logger.Warning("is cook");
+                                // Main.mod.Logger.Log("is cook");
                                 if (CraftGoal__ReversePatch.GetRetrieveFinishedItemGoal(__instance, character, craftingProp, out Goal goal2)) {
                                     // result_goal_sb.Clear();
                                     // goal2.BuildDebugString(result_goal_sb);
-                                    // Main.mod.Logger.Warning($"found a new goal: {result_goal_sb.ToString()}");
+                                    // Main.mod.Logger.Log($"found a new goal: {result_goal_sb.ToString()}");
                                     return goal2;
                                 } else {
                                     // Main.mod.Logger.Warning("couldn't find a new goal");
@@ -78,6 +79,12 @@ namespace ChefBehaviourFix
                             }
                         }
                     }
+                }
+
+                // stop current recipe if crafting limit was reached
+                if (__result == null && character.Community.HasReachedCraftingLimitForProduct(__instance.FollowingRecipe)) {
+                    // Main.mod.Logger.Log("crafting limit reached for recipe");
+                    __instance.StopRecipe(character);
                 }
             }
 
