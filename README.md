@@ -39,4 +39,9 @@ Build
 License
 -------
 
-I claim nothing. ¯\_(ツ)_/¯
+This mod contains code from Survivalist: Invisible Strain. Bob the P.R. Bot
+has confirmed that use of small amounts of such code in non-commercial mods
+for Survivalist: Invisible Strain is permissible.
+
+Feel free to use other code from this mod in non-commercial mods for 
+Survivalist: Invisible Strain if doing so meets your needs.
